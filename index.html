@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agencia de Viajes Elimar</title>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">✈️ Agencia Elimar</div>
+
+    <div class="menu-toggle" id="menu-toggle">☰</div>
+
+    <nav id="menu">
+        <a href="#inicio">Inicio</a>
+        <a href="#destinos">Destinos</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+</header>
+
+<section class="hero" id="inicio">
+    <div>
+        <h1>Viaja sin límites</h1>
+        <p>Descubre el mundo con Agencia Elimar</p>
+        <a href="#destinos" class="btn">Explorar</a>
+    </div>
+</section>
+
+<section class="section oculto" id="destinos">
+    <h2 class="titulo">Destinos populares</h2>
+    <div class="grid" id="contenedor-destinos"></div>
+</section>
+
+<section class="section oculto" id="servicios">
+    <h2 class="titulo">Servicios que brindamos</h2>
+    <div class="grid" id="contenedor-servicios"></div>
+</section>
+
+<section class="section oculto" id="contacto">
+    <h2 class="titulo">Contáctanos</h2>
+
+    <div class="contacto">
+        <p>📞 912139525</p>
+        <p>📍 Guadalupe</p>
+
+        <a href="https://wa.me/51912139525?text=Hola,%20vengo%20de%20la%20p%C3%A1gina%20web%20de%20Agencia%20Elimar,%20quiero%20m%C3%A1s%20informaci%C3%B3n" 
+           class="btn-whatsapp" target="_blank">
+        WhatsApp
+        </a>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2026 Agencia Elimar</p>
+</footer>
+
+<a href="https://wa.me/51912139525?text=Hola,%20vengo%20de%20la%20p%C3%A1gina%20web%20de%20Agencia%20Elimar,%20quiero%20m%C3%A1s%20informaci%C3%B3n" 
+   class="whatsapp">💬</a>
+
+<!-- 🔥 IMPORTANTE: PRIMERO LA DATA -->
+<script src="data.js"></script>
+
+<!-- 🔥 LUEGO TU JS -->
+<script>
+
+/* RENDER DESTINOS */
+var contDestinos = document.getElementById("contenedor-destinos");
+
+destinos.forEach(function(d){
+    contDestinos.innerHTML += `
+        <div class="card">
+            <img src="${d.imagen}">
+            <div class="card-content">
+                <h3>${d.titulo}</h3>
+                <p>${d.descripcion}</p>
+
+                <a href="https://wa.me/51912139525?text=Hola,%20me%20interesa%20${encodeURIComponent(d.titulo)}" 
+                   target="_blank" class="btn">
+                   Consultar
+                </a>
+            </div>
+        </div>
+    `;
+});
+
+/* RENDER SERVICIOS */
+var contServicios = document.getElementById("contenedor-servicios");
+
+servicios.forEach(function(s){
+    contServicios.innerHTML += `
+        <div class="card">
+            <div class="card-content">
+                <h3>${s.titulo}</h3>
+                <p>${s.descripcion}</p>
+            </div>
+        </div>
+    `;
+});
+
+/* SCROLL */
+var elementos = document.querySelectorAll('.oculto');
+
+window.addEventListener('scroll',function(){
+    elementos.forEach(function(el){
+        if(el.getBoundingClientRect().top < window.innerHeight - 100){
+            el.classList.add('visible');
+        }
+    });
+});
+
+/* MENU */
+var toggle = document.getElementById("menu-toggle");
+var menu = document.getElementById("menu");
+
+toggle.addEventListener("click",function(){
+    menu.classList.toggle("active");
+});
+
+/* ENTRADA */
+window.addEventListener("load",function(){
+    document.body.classList.add("visible");
+});
+
+</script>
+
+</body>
+</html>
